@@ -1,34 +1,32 @@
 import datetime
 import time
+import random
 
 def run_advanced_intel():
     ts = datetime.datetime.now().strftime("%H:%M:%S")
-    print(f"\033[1;33m[{ts}] M82-STATE 51: ACTIVATING TRIPLE-WATCHDOG...\033[0m")
+    print(f"\033[1;33m[{ts}] M82-STATE 51: EXECUTING TARGET ANALYSIS...\033[0m")
     
-    # 1. RASTREO MEREY 16 (El Respaldo Físico)
-    # Precio estimado basado en el descuento sobre el Brent
-    merey_price = 58.40 
+    # Simulación de fluctuación de mercado en Reuters (Rango dinámico de prueba)
+    # En producción, esto se conecta al feed de Refinitiv
+    merey_price = round(random.uniform(58.0, 67.5), 2) 
+    trigger_level = 65.00
     
-    # 2. CÁLCULO RECOVERY VALUE (Escenario Base vs State 51)
-    # Soberanos: Base 15% -> Target 40% | PDVSA 2020: Base 50% -> Target 85%
     recovery_venz = "38.5% (High Conviction)"
     recovery_pdvsa_2020 = "82.0% (Collateral Backed)"
     
-    # 3. VOLATILIDAD PDVSA 2020 (Citgo Siege)
-    volatility = "EXTREME | Focus: Delaware Auction Court"
-
-    intel_output = [
-        f"ENERGY: Merey 16 Spot: $ {merey_price} | Backing Capital Inflow.",
-        f"RECOVERY: VENZ Sovereign: {recovery_venz} | PDVSA 2020: {recovery_pdvsa_2020}",
-        f"CITGO_WATCH: PDVSA 2020 Volatility {volatility} | Monitoring OFAC GL5."
-    ]
-
     with open("M82_MasterLog.txt", "a") as f:
-        for line in intel_output:
-            full_line = f"[{ts}] M82_PRO_INTEL: {line}\n"
-            print(f"\033[1;32m{full_line.strip()}\033[0m")
-            f.write(full_line)
-            time.sleep(1)
+        # Registro básico de datos
+        f.write(f"[{ts}] ENERGY: Merey 16 Spot: $ {merey_price}\n")
+        f.write(f"[{ts}] RECOVERY: VENZ Sovereign: {recovery_venz} | PDVSA 2020: {recovery_pdvsa_2020}\n")
+        
+        # Lógica del Profit-Trigger
+        if merey_price >= trigger_level:
+            trigger_msg = f"💥 [PROFIT-TRIGGER] MEREY 16 BREAKOUT: $ {merey_price} >= $ {trigger_level} | STATE 51 INFLOW ACCELERATING!"
+            print(f"\033[1;31;47m {trigger_msg} \033[0m")
+            f.write(f"[{ts}] ALERT_CRITICAL: {trigger_msg}\n")
+        else:
+            normal_msg = f"ENERGY: Merey 16 Spot: $ {merey_price} (Below Trigger of $ {trigger_level})"
+            print(f"\033[1;32m[{ts}] {normal_msg}\033[0m")
 
 if __name__ == "__main__":
     run_advanced_intel()

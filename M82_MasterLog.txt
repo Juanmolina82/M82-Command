@@ -35,3 +35,5 @@
 [14:38:22] M82_PRO_INTEL: ENERGY: Merey 16 Spot: $ 58.4 | Backing Capital Inflow.
 [14:38:22] M82_PRO_INTEL: RECOVERY: VENZ Sovereign: 38.5% (High Conviction) | PDVSA 2020: 82.0% (Collateral Backed)
 [14:38:22] M82_PRO_INTEL: CITGO_WATCH: PDVSA 2020 Volatility EXTREME | Focus: Delaware Auction Court | Monitoring OFAC GL5.
+[14:39:38] ENERGY: Merey 16 Spot: $ 58.35
+[14:39:38] RECOVERY: VENZ Sovereign: 38.5% (High Conviction) | PDVSA 2020: 82.0% (Collateral Backed)
