@@ -26,3 +26,12 @@
 [14:32:59] CITGO_SIEGE: ALERT: PDVSA 2020 holders demand priority in Delaware auction.
 [14:32:59] CITGO_SIEGE: MARKET: Sovereign bonds rise 2 points on Centerview appointment.
 [14:32:59] CITGO_SIEGE: LEGAL: OFAC GL58 keeps Citgo protective shield until further notice.
+[14:36:32] CRITICAL_INTEL: ALERT: LG58 allows advisory services but blocks direct settlements.
+[14:36:32] CRITICAL_INTEL: MARKET: Bondholders monitoring OFAC guidance for Q3 2026.
+[14:36:32] CRITICAL_INTEL: SYSTEM: Reuters <G20/EQUITY> signals high volatility in debt-linked assets.
+[14:36:36] STATE_51_INTEL: STRATEGY: Centerview Partners drafting 'New Money' framework.
+[14:36:36] STATE_51_INTEL: GOAL: Transition to State 51 (Debt Liquidation & Recovery).
+[14:36:36] STATE_51_INTEL: STATUS: Waiting for OFAC 'Green Light' on secondary market trading.
+[14:38:22] M82_PRO_INTEL: ENERGY: Merey 16 Spot: $ 58.4 | Backing Capital Inflow.
+[14:38:22] M82_PRO_INTEL: RECOVERY: VENZ Sovereign: 38.5% (High Conviction) | PDVSA 2020: 82.0% (Collateral Backed)
+[14:38:22] M82_PRO_INTEL: CITGO_WATCH: PDVSA 2020 Volatility EXTREME | Focus: Delaware Auction Court | Monitoring OFAC GL5.
