@@ -14,3 +14,15 @@
 [14:26:42] CRITICAL_INTEL: ALERT: LG58 allows advisory services but blocks direct settlements.
 [14:26:42] CRITICAL_INTEL: MARKET: Bondholders monitoring OFAC guidance for Q3 2026.
 [14:26:42] CRITICAL_INTEL: SYSTEM: Reuters <G20/EQUITY> signals high volatility in debt-linked assets.
+[14:28:08] M82_SYSTEM: MANUAL_OVERRIDE_ACTIVE
+[14:28:08] WATCHDOG: SCANNING OFAC LG58... STATUS: DETECTED
+[14:28:08] REUTERS: <G20/EQUITY> | <EMG/EQUITY1> LOADED
+[14:28:08] CRITICAL_INTEL: ALERT: LG58 allows advisory services but blocks direct settlements.
+[14:28:08] CRITICAL_INTEL: MARKET: Bondholders monitoring OFAC guidance for Q3 2026.
+[14:28:08] CRITICAL_INTEL: SYSTEM: Reuters <G20/EQUITY> signals high volatility in debt-linked assets.
+[14:30:43] CRITICAL_INTEL: ALERT: LG58 allows advisory services but blocks direct settlements.
+[14:30:43] CRITICAL_INTEL: MARKET: Bondholders monitoring OFAC guidance for Q3 2026.
+[14:30:43] CRITICAL_INTEL: SYSTEM: Reuters <G20/EQUITY> signals high volatility in debt-linked assets.
+[14:32:59] CITGO_SIEGE: ALERT: PDVSA 2020 holders demand priority in Delaware auction.
+[14:32:59] CITGO_SIEGE: MARKET: Sovereign bonds rise 2 points on Centerview appointment.
+[14:32:59] CITGO_SIEGE: LEGAL: OFAC GL58 keeps Citgo protective shield until further notice.
