@@ -1,0 +1,14 @@
+{
+  "dossier_id": "M82-MACRO-20260901-TOPNEWS",
+  "timestamp": "2026-09-01T01:00:00Z",
+  "target_entity": "Molina Holdings LLC",
+  "global_events": {
+    "japan_10y_jgb_yield_pct": 3.0,
+    "shein_hk_debut_change_pct": -8.0,
+    "shein_ip_price_hkd": 48.56,
+    "crude_oil_usd": 91.0,
+    "us_iran_conflict_status": "ACTIVE_FIRE_EXCHANGE",
+    "asia_ai_factory_expansion": "POSITIVE_AUGUST"
+  },
+  "status": "VERIFIED_AUDITED"
+}
