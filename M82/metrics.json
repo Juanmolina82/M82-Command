@@ -31,5 +31,20 @@
     "signal": "TESTING_50DMA",
     "beta_spread_10Y30Y": "49bp pressure",
     "breach_trigger": 251.96
+  },
+  "AAPL": {
+    "price": 255.8,
+    "chg_pct": 3.0,
+    "pe_fy27": 30.5,
+    "weight_spx": 7.9,
+    "ceo": "John Ternus (Effective 2026-09-01)",
+    "catalyst_event": "2026-09-09 Launch",
+    "risk_factor": "multiple_stretch_vs_US30Y_5.24",
+    "signal": "SPX_SENTIMENT_HEDGE_ONLY"
+  },
+  "CROSS_ALERT_TOP_DISTRIBUTION": {
+    "aapl_trigger": 260.0,
+    "us30y_trigger": 5.3,
+    "action": "SIGNAL_AGGRESSIVE_DEFENSIVE_ROTATION"
   }
 }
