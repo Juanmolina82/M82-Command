@@ -1,0 +1,27 @@
+{
+  "dossier_id": "M82-FINTECH-20260831-SOFI-001",
+  "timestamp": "2026-08-31T23:30:00Z",
+  "target_entity": "Molina Holdings LLC",
+  "asset": {
+    "company": "SoFi Technologies Inc",
+    "ticker": "SOFI.OQ",
+    "isin": "US83406F1021",
+    "close_price_usd": 18.06,
+    "market_cap_usd": "23.09B",
+    "pe_ttm": 38.06513,
+    "beta": 1.84,
+    "analyst_consensus": "Hold (2.68)"
+  },
+  "financial_metrics_q1_2026": {
+    "interest_income_usd": "1.00B (+31% YoY)",
+    "net_interest_income_after_provision_usd": "684.10M (+39% YoY)",
+    "net_income_usd": "166.70M (vs 71.10M Q1-25)",
+    "total_assets_2025_usd": "50.66B",
+    "long_term_debt_to_equity_pct": 17.43
+  },
+  "estimates_consensus": {
+    "eps_2026_fy": 0.598,
+    "eps_2027_fy": 0.827,
+    "ebitda_2026_fy_usd": "1.62B"
+  }
+}
