@@ -1,0 +1,25 @@
+{
+  "dossier_id": "M82-SOVEREIGN-20260831-VEN-006-FLOW",
+  "timestamp": "2026-08-31T23:14:32Z",
+  "target_entity": "Molina Holdings LLC",
+  "asset": {
+    "ticker": "VEGV 9.250% 09/15/27",
+    "isin": "US922646AS37",
+    "g_spread_bps": 6731.09,
+    "yield_mid_compressed": 73.7464
+  },
+  "market_flow_analysis": {
+    "short_positioning": [
+      "Quant Systematics & Multi-Strategy Macro Funds",
+      "Benchmark-Short EM Asset Managers (Implicit Short via Zero-Weighting)"
+    ],
+    "long_aggressors_accumulation": [
+      "Broad Reach Capital / Winterbrook",
+      "Greylock Capital Management",
+      "Gramercy Funds Management",
+      "Ashmore Group",
+      "Elliott Investment Management (Cross-Hedging)"
+    ],
+    "mechanics": "Short Squeeze induced by illiquid secondary OTC ask-sides during Monroe 2.0 / VEN-004 positioning."
+  }
+}
