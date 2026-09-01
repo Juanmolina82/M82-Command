@@ -1,0 +1,42 @@
+{
+  "dossier_id": "M82-SOVEREIGN-CITGO-1788274392",
+  "timestamp": "2026-09-01T14:53:12Z",
+  "sequence": 2,
+  "sovereign_portfolio": {
+    "VEN_2027": {
+      "isin": "US922646AS37",
+      "coupon": 9.25,
+      "price_pct": 50.6,
+      "outstanding_usd": "4.00B",
+      "type": "Unsecured"
+    },
+    "PDVSA_2020": {
+      "isin": "USP7807HAM71",
+      "coupon": 8.5,
+      "price_pct": 50.7,
+      "outstanding_usd": "1.68B",
+      "type": "50.1% Citgo Pledged"
+    }
+  },
+  "collateral_analytics": {
+    "citgo_enterprise_value_usd": 13000000000,
+    "delaware_auction_status": "ACTIVE_PHASE_2_BIDS",
+    "pdvsa_2020_implied_recovery_pct": 100.0,
+    "ven_2027_implied_recovery_pct": 38.5,
+    "nabep_concession_fields": 17,
+    "nabep_proven_reserves_bbl": 65000000000,
+    "us_war_dept_stake_pct": 35.0
+  },
+  "market_benchmarks": {
+    "spx": 7730.99,
+    "t10y_yield": 4.67,
+    "total_marketable_debt_usd": 37513014002
+  },
+  "valuation_source": "VERIFIED_TRACE_BLOOMBERG_DELAWARE_COURT",
+  "security": {
+    "license": "PROPRIETARY & CONFIDENTIAL \u2014 M82 CORE / SSOT VERIFIED",
+    "hash_type": "SHA256_64_CHAR_FULL_SPEC"
+  },
+  "status": "VERIFIED_AUDITED",
+  "hash_signature": "4b08a216719e8e3428966c0d8b10b47e3d17d0ea82da111105085a854979b189"
+}
