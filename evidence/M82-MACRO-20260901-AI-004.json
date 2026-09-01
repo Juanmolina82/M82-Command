@@ -1,0 +1,18 @@
+{
+  "dossier_id": "M82-MACRO-20260901-AI-004",
+  "timestamp": "2026-09-01T02:10:00Z",
+  "domain": "AGI Compute Infrastructure & Critical Mineral Chokepoints",
+  "target_entity": "Molina Holdings LLC",
+  "risk_level": "CRITICAL / STRUCTURAL BOTTLENECK",
+  "macro_convergence": {
+    "geopolitical_framework": "Critical Minerals Export Controls & Grid Power Capacity",
+    "asset_class": "Rare Earth Elements / Utility Infrastructure / AI Hardware Debt",
+    "chokepoint": "Power Transformers / Heavy Rare Earth Supply Lines (Terbium/Dysprosium)"
+  },
+  "key_findings": [
+    "Severe energy bottlenecks constraining hyper-scale AGI Data Center expansion across North America and EU.",
+    "Export restrictions on key heavy rare earths and processing technologies increasing hardware procurement lead-times.",
+    "Capital allocation shift toward captive power generation assets (nuclear/gas microgrids) to bypass utility queue delays."
+  ],
+  "hedging_action": "Hedge exposure on utility infrastructure providers; prioritize capital allocation to vertically integrated energy-compute assets."
+}
