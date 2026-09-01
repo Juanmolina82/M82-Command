@@ -1,0 +1,22 @@
+{
+  "dossier_id": "M82-LSEG-AGGREGATES-1788268266",
+  "timestamp": "2026-09-01T13:11:06Z",
+  "sequence": 1,
+  "report_source": "LSEG Proprietary Research - Weekly Aggregates (Aug 28, 2026)",
+  "spx_aggregates": {
+    "level": 7730.99,
+    "fwd_52wk_eps": 395.22,
+    "fwd_52wk_pe": 19.6,
+    "cy2026_eps": 362.26,
+    "cy2026_growth_pct": 33.53,
+    "cy2027_eps": 412.46,
+    "cy2027_growth_pct": 13.86
+  },
+  "macro_rates": {
+    "tbond_10y_yield": 4.67,
+    "tbill_1y_yield": 4.025,
+    "peigby_ratio": -8.62
+  },
+  "status": "VERIFIED_AUDITED",
+  "heartbeat": "1_MIN_RECURRENT"
+}
