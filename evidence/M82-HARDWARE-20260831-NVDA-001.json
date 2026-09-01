@@ -1,0 +1,22 @@
+{
+  "dossier_id": "M82-HARDWARE-20260831-NVDA-001",
+  "timestamp": "2026-08-31T23:55:00Z",
+  "target_entity": "Molina Holdings LLC",
+  "asset": {
+    "company": "NVIDIA Corp",
+    "ticker": "NVDA.O",
+    "cusip": "67066G104",
+    "close_price_usd": 220.78,
+    "change_pct": 1.4847,
+    "vwap_usd": 219.6078,
+    "volume": 124702660,
+    "turnover_usd": "27.39B",
+    "block_volume": 34611208,
+    "large_blocks_over_100k": 32,
+    "pe_12m": 27.5,
+    "eps_12m": 7.9107,
+    "dma_50": 208.42,
+    "dma_200": 195.82
+  },
+  "status": "VERIFIED_AUDITED"
+}
