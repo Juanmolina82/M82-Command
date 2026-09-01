@@ -1,0 +1,19 @@
+{
+  "dossier_id": "M82-SOVEREIGN-BEAT-1788245841",
+  "timestamp": "2026-09-01T06:57:21Z",
+  "sequence": 2,
+  "target_entity": "Republica Bolivariana de Venezuela",
+  "market_metrics": {
+    "usd_ves": 796.330185,
+    "ibc_index": 5588.28,
+    "marketable_debt_usd": 37513014002,
+    "esg_score": 47.77
+  },
+  "top_news": [
+    "Venezuela oil deal: NABEP gets 100-year concessions",
+    "DJ Venezuelan Oil Firm Backed by Trump Plans Drilling",
+    "\u042d\u041a\u0421\u041a\u041b\u042e\u0417\u0418\u0412-\u0412\u0435\u043d\u0435\u0441\u0443\u044d\u043b\u0430 \u043f\u0435\u0440\u0435\u0434\u0430\u0441\u0442 \u0421\u0428\u0410 \u0447\u0430\u0441\u0442\u044c"
+  ],
+  "status": "VERIFIED_AUDITED",
+  "heartbeat": "1_MIN_RECURRENT"
+}
