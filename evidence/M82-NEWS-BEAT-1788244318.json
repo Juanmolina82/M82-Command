@@ -1,0 +1,13 @@
+{
+  "dossier_id": "M82-NEWS-BEAT-1788244318",
+  "timestamp": "2026-09-01T06:31:58Z",
+  "sequence": 2,
+  "target_entity": "Molina Holdings LLC",
+  "top_news_feed": [
+    "JGB 10Y yield reaches 3.0% level for first time in 30 years",
+    "Shein shares slide in Hong Kong debut on trade & regulatory risks",
+    "US-Iran fire exchange pushes crude oil above $91 USD"
+  ],
+  "status": "VERIFIED_AUDITED",
+  "heartbeat": "1_MIN_RECURRENT"
+}
