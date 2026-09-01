@@ -1,0 +1,14 @@
+{
+  "dossier_id": "M82-MACRO-20260831-VEN-006-PING",
+  "timestamp": "2026-08-31T22:11:00Z",
+  "domain": "Telegram Broadcast Trigger - Venezuelan Sovereign Bond",
+  "target_entity": "Molina Holdings LLC",
+  "action": "FORCE_NOTIFICATION_DISPATCH",
+  "instrument": {
+    "ticker": "VEGV 9.250 09/15/27 DFTd",
+    "isin": "US922646AS37",
+    "price_usd": 53.00,
+    "bid_yield_pct": 71.4760
+  },
+  "status": "DISPATCHING_TO_BOT"
+}
