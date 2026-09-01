@@ -1,0 +1,22 @@
+{
+  "event_id": "M82-MACRO-20260901-VEN-004",
+  "utc_timestamp": "2026-09-01T00:10:00Z",
+  "source": {
+    "provider": "LSEG Workspace",
+    "headline": "US companies to take control of Venezuelan fields operated by China and Russia",
+    "keywords": ["USA-VENEZUELA/CHINA-RUSSIA"]
+  },
+  "deal_structure": {
+    "operator": "North American Blue Energy Partners (NABEP)",
+    "current_controller": "Alejandro Betancourt",
+    "total_projects": 17,
+    "excluded": ["5 Chinese", "1 Russian"],
+    "reserve_base": "64bn bbl"
+  },
+  "thesis_alignment": {
+    "tag": "US Hemisphere Monroe 2.0 / OWNERSHIP",
+    "mandate": "Capital Preservation - MOLINA HOLDINGS LLC",
+    "shift": "From Camimpeg services to direct US equity control",
+    "correlation_to_ven_002": "VEN-002 was services, VEN-004 is OWNERSHIP"
+  }
+}
