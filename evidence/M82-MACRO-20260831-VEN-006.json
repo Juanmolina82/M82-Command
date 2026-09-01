@@ -1,0 +1,21 @@
+{
+  "dossier_id": "M82-MACRO-20260831-VEN-006",
+  "timestamp": "2026-08-31T22:03:00Z",
+  "domain": "Venezuelan Sovereign Debt Restructuring & Yield Metrics",
+  "target_entity": "Molina Holdings LLC",
+  "risk_level": "DISTRESSED / HIGH RECOVERY POTENTIAL",
+  "instrument_metrics": {
+    "ticker": "VEGV 9.250 09/15/27 DFTd",
+    "isin": "US922646AS37",
+    "price_usd": 53.00,
+    "bid_yield_pct": 71.4760,
+    "coupon_rate_pct": 9.250,
+    "maturity_date": "2027-09-15"
+  },
+  "macro_convergence": {
+    "geopolitical_framework": "Monroe 2.0 / Debt Collateral Alignment",
+    "asset_class": "Sovereign Defaulted Debt / Distressed Asset Play",
+    "chokepoint": "Citgo Restructuring & Holdout Creditor Litigation"
+  },
+  "hedging_action": "Monitor recovery value spreads against crude export royalty flows; evaluate secondary market liquidity."
+}
