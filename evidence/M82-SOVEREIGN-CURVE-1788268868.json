@@ -1,0 +1,36 @@
+{
+  "dossier_id": "M82-SOVEREIGN-CURVE-1788268868",
+  "timestamp": "2026-09-01T13:21:08Z",
+  "sequence": 1,
+  "sovereign_portfolio": {
+    "VEN_2027": {
+      "isin": "US922646AS37",
+      "coupon": 9.25,
+      "price_pct": 93.5,
+      "status": "Restructuring"
+    },
+    "VEN_2026": {
+      "isin": "USP17625AE71",
+      "coupon": 11.75,
+      "price_pct": 57.54,
+      "status": "Restructuring"
+    },
+    "PDVSA_2020": {
+      "isin": "USP7807HAM71",
+      "coupon": 8.5,
+      "price_pct": 29.6,
+      "status": "Collateral-Pledged"
+    }
+  },
+  "market_benchmarks": {
+    "spx": 7730.99,
+    "t10y_yield": 4.67,
+    "total_marketable_debt_usd": 37513014002
+  },
+  "security": {
+    "license": "PROPRIETARY & CONFIDENTIAL \u2014 M82 CORE / LSEG DATA",
+    "copy_protection": "ENFORCED_SSOT_VERIFIED"
+  },
+  "status": "VERIFIED_AUDITED",
+  "hash_signature": "c3eb20a52318e589"
+}
