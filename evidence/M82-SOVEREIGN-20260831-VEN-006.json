@@ -1,0 +1,21 @@
+{
+  "dossier_id": "M82-SOVEREIGN-20260831-VEN-006",
+  "timestamp": "2026-08-31T22:53:00Z",
+  "target_entity": "Molina Holdings LLC",
+  "domain": "Sovereign Debt / Distress Asset",
+  "asset": {
+    "ticker": "VEGV 9.250% 09/15/27",
+    "isin": "US922646AS37",
+    "ric": "922646AS3=",
+    "bid_ask": "B53 / A54 USD",
+    "lseg_yield_bid": 71.4760,
+    "yield_mid_compressed": 73.7464,
+    "g_spread_bps": 6731.09,
+    "z_spread_bps": 6733.0,
+    "settle_date": "2026-09-01"
+  },
+  "market_dynamics": {
+    "type": "SHORT_SQUEEZE_INSTITUTIONAL_ACCUMULATION",
+    "thesis": "Monroe 2.0 / Pre-VEN-004 Rebalancing"
+  }
+}
