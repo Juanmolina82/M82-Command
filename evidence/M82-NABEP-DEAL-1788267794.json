@@ -1,0 +1,21 @@
+{
+  "dossier_id": "M82-NABEP-DEAL-1788267794",
+  "timestamp": "2026-09-01T13:03:14Z",
+  "sequence": 2,
+  "target_entity": "North American Blue Energy Partners (NABEP) / US Govt / Venezuela",
+  "deal_terms": {
+    "concession_duration_years": 100,
+    "oil_fields_count": 17,
+    "proven_reserves_bbl": 65000000000,
+    "us_war_dept_equity_pct": 35.0,
+    "us_state_dept_cost_buy_pct": 20.0,
+    "us_state_dept_first_refusal_pct": 80.0,
+    "governing_jurisdiction": "U.S. Federal Law"
+  },
+  "market_context": {
+    "brent_crude_surge_pct": 28.0,
+    "geopolitical_driver": "US-Iran military operations"
+  },
+  "status": "VERIFIED_AUDITED",
+  "heartbeat": "1_MIN_RECURRENT"
+}
