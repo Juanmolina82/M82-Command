@@ -1,16 +1,22 @@
-# MOLINA-ALGORITHM v1.0 (Alpha)
-## Sovereign Energy & Algorithmic Intelligence
-Powered by Molina Holdings & Global LLC | Licensed under Apache 2.0
+# M82 CORE-V6 — Sovereign Debt, Collateral, Carry & Oil Hedge Engine
 
-### Core Mission
-Integración de activos físicos (Átomos) con flujos de datos financieros (Bits) 
-para la estabilización de infraestructura crítica en mercados emergentes.
+Sistema automatizado de monitoreo macroeconómico, valuación de deuda soberana distressed, colateral corporativo, funding carry y cobertura energética con inmutabilidad SSOT en GitHub.
 
-### Current Modules
-- **Intelligence/**: Motores de ranking xAI-Fusion sincronizados con WSJ Pro+ y LSEG.
-- **Core/**: Protocolo "The Roar" para ejecución de mando en tiempo real (Session 1).
-- **Legal/**: Defensa de IP y marco regulatorio "Estado 51".
+## Arquitectura del Ecosistema (6 Métricas CORE)
 
-### Compliance & Governance
-Este repositorio cumple con los estándares de transparencia de la SEC y está 
-optimizado para auditorías de juntas directivas de nivel Fortune 50.
+| Componente | Descripción | Fuente / Estándar |
+| :--- | :--- | :--- |
+| Daemon Loop | Monitoreo y despacho en segundo plano (ciclos de 5 min) | Python 3 / Termux |
+| SSOT Engine | Firmado SHA-256 (64 caracteres) e inmutabilización en main | GitHub API v3 |
+| Sovereign Debt | Marcaje Mark-to-Market (VEN 2027 50.60c / PDVSA 2020 50.70c) | TRACE / Bloomberg |
+| Collateral Module | Valuación de PDVSA 2020 vinculada a subasta de Citgo ($13.0B EV) | Delaware Court Filings |
+| Funding & Carry | Tasa SOFR 1M (4.32%) vs Yield VEN 2027 (+13.96% Net Carry) | FRED / Federal Reserve |
+| Oil Hedge Module | Rastreo WTI (>$87) / Brent (~$92) como catalizador de recovery | LSEG / ICE Futures |
+
+## Especificaciones de Seguridad & Audit-Trail
+
+1. Firmado Forense: Digest SHA-256 completo de 64 caracteres por cada dossier JSON.
+2. Log de Gobernanza: Registro inmutable almacenado en Governance/logs/audit.log y sincronizado en main.
+3. OPSEC & Storage: Supresión de marcadores temporales explícitos en notificaciones y rotación diaria de logs en crontab.
+
+*Propiedad Intelectual: M82 Sovereign Core / All Rights Reserved.*
