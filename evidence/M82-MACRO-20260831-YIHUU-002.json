@@ -1,0 +1,20 @@
+{
+  "dossier_id": "M82-MACRO-20260831-YIHUU-002",
+  "timestamp": "2026-08-31T22:06:00Z",
+  "domain": "Telegram Bot Active Dispatch & Yihuu Integration",
+  "target_entity": "Molina Holdings LLC / Yihuu Command",
+  "action": "ACTIVE_TELEGRAM_BROADCAST",
+  "dispatch_targets": [
+    "Telegram Bot Dashboard",
+    "Yihuu Intelligence Engine",
+    "M82 Governance Audit Trail"
+  ],
+  "dossiers_included": [
+    "VEN-004",
+    "VEN-005",
+    "VEN-006 (VEGV 2027 @ 53.00 USD / 71.47% Yield)",
+    "ORMUZ-002",
+    "AI-004"
+  ],
+  "status": "DISPATCHED"
+}
