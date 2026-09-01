@@ -1,0 +1,13 @@
+{
+  "dossier_id": "M82-TRIGGER-BEAT-1788268551",
+  "timestamp": "2026-09-01T13:15:51Z",
+  "sequence": 2,
+  "market_data": {
+    "spx": 7730.99,
+    "t10y": 4.67,
+    "sofi_oq": 14.2,
+    "nvda_o": 128.5
+  },
+  "trigger_fired": false,
+  "status": "VERIFIED_AUDITED"
+}
