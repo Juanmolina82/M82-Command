@@ -1,0 +1,18 @@
+{
+  "dossier_id": "M82-MACRO-20260901-ORMUZ-002",
+  "timestamp": "2026-09-01T02:05:00Z",
+  "domain": "Hormuz Strait Chokepoint & Global Energy Risk",
+  "target_entity": "Molina Holdings LLC",
+  "risk_level": "CRITICAL / ASYMMETRIC SHOCK",
+  "macro_convergence": {
+    "geopolitical_framework": "Middle East Maritime Blockade & Tanker Escort Protocol",
+    "asset_class": "Brent / WTI Spreads / Freight Rates / LNG Derivatives",
+    "chokepoint": "Strait of Hormuz / Bab-el-Mandeb Supply Line"
+  },
+  "key_findings": [
+    "Escalation in naval corridor friction driving extreme premium pricing on maritime insurance and freight.",
+    "Disruption of Middle East crude flows accelerating reliance on Western Hemisphere heavy/medium grade reserves.",
+    "Strategic hedging requirement across physical energy positions and short-term volatility swaps."
+  ],
+  "hedging_action": "Activate energy spread protection; reallocate exposure toward resilient supply chains."
+}
