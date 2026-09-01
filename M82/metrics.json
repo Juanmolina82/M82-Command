@@ -1,50 +1,29 @@
 {
-  "timestamp": "2026-09-01T11:38:00Z",
-  "SPX": 7610.0,
-  "T10Y": 4.75,
-  "SOFR": 4.32,
-  "Carry": 13.96,
-  "VEN2027_Bid": 51.75,
-  "VEN2027_Ask": 52.75,
-  "VEN2027_Mid": 52.25,
-  "US30Y_Yield": 5.2423,
-  "US30Y_Price": "98*07",
-  "Citgo_EV": 13.0,
-  "WTI": 87.5,
-  "Brent": 92.0,
-  "COT_WTI_MM": 104573,
-  "COT_WTI_Long": 203162,
-  "COT_WTI_Short": 98589,
-  "COT_Brent_MM": 223598,
-  "OI_WTI": 2482663,
-  "VEN2027_FairValue": 51.9,
-  "UST_10Y_30Y_Spread_bps": 49.23,
-  "COT_WTI_Squeeze_Trigger": 115000,
   "AMZN": {
     "price": 255.14,
-    "chg_pct": -1.78,
-    "low": 251.93,
     "dma50": 251.96,
-    "vwap": 254.43,
-    "vol": 12999648,
-    "block_vol": 773691,
-    "signal": "TESTING_50DMA",
-    "beta_spread_10Y30Y": "49bp pressure",
-    "breach_trigger": 251.96
+    "signal": "TESTING_50DMA"
   },
   "AAPL": {
     "price": 255.8,
-    "chg_pct": 3.0,
     "pe_fy27": 30.5,
-    "weight_spx": 7.9,
-    "ceo": "John Ternus (Effective 2026-09-01)",
-    "catalyst_event": "2026-09-09 Launch",
-    "risk_factor": "multiple_stretch_vs_US30Y_5.24",
-    "signal": "SPX_SENTIMENT_HEDGE_ONLY"
+    "weight_spx": 7.9
   },
-  "CROSS_ALERT_TOP_DISTRIBUTION": {
-    "aapl_trigger": 260.0,
-    "us30y_trigger": 5.3,
-    "action": "SIGNAL_AGGRESSIVE_DEFENSIVE_ROTATION"
+  "UST": {
+    "10Y": 4.75,
+    "30Y": 5.2423,
+    "spread": 0.4923
+  },
+  "SPX": {
+    "level": 7610,
+    "support": 7610
+  },
+  "VEN": {
+    "bid": 51.75,
+    "mid": 52.25,
+    "ev": 13.0
+  },
+  "WTI": {
+    "price": 87.0
   }
 }
