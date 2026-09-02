@@ -1,4 +1,9 @@
-vault.json
-*.log
-__pycache__/
 .env
+*.env
+!.env.example
+vault.json
+**/vault.json
+.m82_secrets/
+runtime/
+__pycache__/
+*.log
