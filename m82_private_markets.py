@@ -11,24 +11,22 @@ class M82PrivateMarketsEngine:
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def dispatch(self):
-        dosier = "📑 *[M82 PRIVATE MARKETS — PE/VC TRANSACTIONS]* 📑\n"
+        dosier = "🚪 *[M82 PRIVATE MARKETS — PE/VC EXITS TRACKER]* 🚪\n"
         dosier += f"🏛️ *Molina Holdings LLC* | `{self.timestamp}`\n"
         dosier += "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n"
         
-        dosier += "📌 *TRANSACCIONES RECIENTES EN REFINITIV WORKSPACE*\n"
-        dosier += "• *Saviynt Inc:* Tech | Acquisition | `Active` (US-CA)\n"
-        dosier += "• *WorldRemit Ltd:* Tech | Later Stage | `Active` (US)\n"
-        dosier += "• *Oy Medix Biochemica AB:* Healthcare | Later Stage | `Active` (FI)\n"
-        dosier += "• *Ssangyong Motor Co:* Basic Materials | PIPE | `Went Public` (KR)\n"
-        dosier += "• *Exterro Inc:* Tech | Recap/Turnaround | `Active` (US-OR)\n"
-        dosier += "• *Vizrt Group AS:* Tech | Secondary Direct | `Active` (NO)\n"
+        dosier += "💰 *DESINVERSIONES Y LIQUIDACIONES HISTÓRICAS*\n"
+        dosier += "• *Healthcare / Bio:* 12 Exits (PTC Therapeutics, Amphastar, Uniqure BV)\n"
+        dosier += "• *Technology:* 11 Exits (Kaptivo, Touchtunes, Power Integrations, Icera)\n"
+        dosier += "• *Industrials & Services:* 4 Exits (ThermoCeramics, Foundation Partners)\n\n"
+        dosier += "🌍 *Mercados de Salida Principales:* Canadá (Quebec), EE. UU. (CA, NY, MA) y Europa (UK, NL, NO).\n"
 
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
         payload = {"chat_id": CHAT_ID, "text": dosier, "parse_mode": "Markdown"}
         
         res = requests.post(url, json=payload, timeout=10)
         if res.status_code == 200:
-            print("✅ Listado de transacciones enviado a Telegram.")
+            print("✅ Registro de desinversiones (Exits) enviado a Telegram.")
 
 if __name__ == "__main__":
     M82PrivateMarketsEngine().dispatch()
