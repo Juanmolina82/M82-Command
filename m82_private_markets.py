@@ -11,29 +11,24 @@ class M82PrivateMarketsEngine:
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
     def dispatch(self):
-        dosier = "📊 *[M82 PRIVATE MARKETS — PORTFOLIO & SECTOR ALLOCATION]* 📊\n"
+        dosier = "📊 *[M82 PRIVATE MARKETS — STAGE ALLOCATION]* 📊\n"
         dosier += f"🏛️ *Molina Holdings LLC* | `{self.timestamp}`\n"
         dosier += "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n"
         
-        dosier += "🏗️ *DESGLOSE POR SECTOR (TOTAL: $4,248.56M USD)*\n"
-        dosier += "• *Basic Materials:* `$1,508.47M USD` (35.51% | 8 cos)\n"
-        dosier += "• *Healthcare:* `$1,248.73M USD` (29.39% | 50 cos)\n"
-        dosier += "• *Technology:* `$933.92M USD` (21.98% | 107 cos)\n"
-        dosier += "• *Financials:* `$476.06M USD` (11.21% | 21 cos)\n"
-        dosier += "• *Industrials:* `$55.99M USD` (1.32% | 21 cos)\n\n"
-
-        dosier += "🤝 *TOP CO-INVERSORES SINDICALES*\n"
-        dosier += "• *FTQ (Fonds de solidarité):* 110 Deals\n"
-        dosier += "• *BDC (Business Dev Bank):* 75 Deals\n"
-        dosier += "• *CDP Capital Private Equity:* 62 Deals\n"
-        dosier += "• *Desjardins Capital:* 57 Deals\n"
+        dosier += "🚀 *DESGLOSE POR ETAPA DE INVERSIÓN (STAGE)*\n"
+        dosier += "• *PIPE:* `$1,508.14M USD` (35.50% | Avg: $251.36M/co)\n"
+        dosier += "• *Later Stage:* `$1,353.92M USD` (31.87% | Avg: $56.41M/co)\n"
+        dosier += "• *VC Partnership:* `$475.25M USD` (11.19% | Avg: $27.96M/co)\n"
+        dosier += "• *Expansion:* `$447.56M USD` (10.54% | 99 cos)\n"
+        dosier += "• *Early Stage:* `$366.97M USD` (8.64% | 96 cos)\n"
+        dosier += "• *Seed & Otras:* `$96.09M USD` (2.26%)\n"
 
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
         payload = {"chat_id": CHAT_ID, "text": dosier, "parse_mode": "Markdown"}
         
         res = requests.post(url, json=payload, timeout=10)
         if res.status_code == 200:
-            print("✅ Perfil sectorial y co-inversores enviados a Telegram.")
+            print("✅ Desglose por etapas de inversión enviado a Telegram.")
 
 if __name__ == "__main__":
     M82PrivateMarketsEngine().dispatch()
