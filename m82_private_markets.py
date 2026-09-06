@@ -26,14 +26,47 @@ class M82PrivateMarketsEngine:
         ]
         return pd.DataFrame(largest_funds), 187423.25
 
+    def parse_francisco_partners_details(self):
+        fp_fund = {
+            "Fund Name": "Francisco Partners VIII, L.P.",
+            "VEID": "627364",
+            "Management Firm": "Francisco Partners LP",
+            "Fund Size": "23,000.00M USD",
+            "Target Size": "14,000.00M USD",
+            "Vintage Year": 2026,
+            "Fund Stage": "All Buyouts",
+            "Status": "Had Final Close"
+        }
+        
+        historical_funds = [
+            {"Fund": "Francisco Partners VIII, L.P.", "Size (M USD)": 23000.00, "Vintage": 2026},
+            {"Fund": "FRANCISCO PARTNERS VII, L.P.", "Size (M USD)": 13500.00, "Vintage": 2022},
+            {"Fund": "Francisco Partners VI LP", "Size (M USD)": 7450.00, "Vintage": 2020},
+            {"Fund": "Francisco Partners V", "Size (M USD)": 3975.00, "Vintage": 2017},
+            {"Fund": "FRANCISCO PARTNERS AGILITY III, L.P.", "Size (M USD)": 3300.00, "Vintage": 2022},
+            {"Fund": "FP Credit Partners III, L.P.", "Size (M USD)": 3300.00, "Vintage": 2025},
+        ]
+        return fp_fund, pd.DataFrame(historical_funds)
+
     def dispatch(self):
         df_funds, total_raised = self.parse_largest_funds()
+        fp_fund, df_fp_history = self.parse_francisco_partners_details()
 
-        dosier = "💼 *[M82 PRIVATE EQUITY — LARGEST FUNDS RAISED]* 💼\n"
+        dosier = "💼 *[M82 PRIVATE MARKETS & FUND SUMMARY — REFINITIV]* 💼\n"
         dosier += f"🏛️ *Molina Holdings LLC Intelligence* | `{self.timestamp}`\n"
         dosier += "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n"
 
-        dosier += "🌐 *TOP 10 FONDOS MÁS GRANDES LEVANTADOS (REFINITIV)*\n"
+        dosier += f"🏛️ *FONDO DESTACADO: {fp_fund['Fund Name']} (VEID: {fp_fund['VEID']})*\n"
+        dosier += f"• *Firma Gestora:* {fp_fund['Management Firm']}\n"
+        dosier += f"• *Tamaño Final:* `{fp_fund['Fund Size']}` | *Objetivo:* `{fp_fund['Target Size']}`\n"
+        dosier += f"• *Estatus:* {fp_fund['Status']} | *Vintage:* `{fp_fund['Vintage Year']}`\n"
+        dosier += f"• *Estrategia:* {fp_fund['Fund Stage']}\n\n"
+
+        dosier += "📊 *HISTÓRICO PRINCIPALES FONDOS FRANCISCO PARTNERS*\n"
+        for _, row in df_fp_history.iterrows():
+            dosier += f"• *{row['Fund']}* ({row['Vintage']}): `${row['Size (M USD)']:,.2f}M USD`\n"
+
+        dosier += "\n🌐 *TOP 10 FONDOS MÁS GRANDES LEVANTADOS (GLOBAL)*\n"
         for idx, row in df_funds.iterrows():
             dosier += f"{idx+1}. *{row['Fund Name']}*: `${row['Size (M USD)']:,.2f}M USD`\n"
 
@@ -45,7 +78,7 @@ class M82PrivateMarketsEngine:
         try:
             res = requests.post(url, json=payload, timeout=10)
             if res.status_code == 200:
-                print("✅ M82 Private Equity (Largest Funds) despachado a Telegram.")
+                print("✅ M82 Private Markets despachado a Telegram con éxito.")
             else:
                 print(f"❌ Error al enviar a Telegram: {res.text}")
         except Exception as e:
