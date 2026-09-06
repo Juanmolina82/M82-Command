@@ -13,10 +13,11 @@ class M82MasterOrchestrator:
         print("⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯")
 
         scripts = [
-            ("m82_macro_engine.py", "1. Base de Datos Macro & Cobertura"),
+            ("m82_macro_engine.py", "1. Base de Datos Macro"),
             ("m82_macro_dosier.py", "2. Despacho Sovereign Macro Dosier"),
-            ("m82_refinitiv_pipeline.py", "3. Indicadores & Calendario Refinitiv Workspace"),
-            ("m82_credit_private_markets.py", "4. Ratings Soberanos & Private Markets (Incover)")
+            ("m82_refinitiv_pipeline.py", "3. Indicadores & Calendario Refinitiv"),
+            ("m82_credit_private_markets.py", "4. Credit Ratings Soberanos"),
+            ("m82_private_markets.py", "5. Analytics PE Refinitiv & KKR")
         ]
 
         for script, description in scripts:
@@ -31,7 +32,7 @@ class M82MasterOrchestrator:
                 print(f"  └── ⚠️ Archivo {script} no encontrado.")
             time.sleep(1)
 
-        print("\n🏛️ [M82 COMPLETE] Suite ejecutada y sincronizada.")
+        print("\n🏛️ [M82 COMPLETE] Suite sovereign completamente ejecutada.")
 
 if __name__ == "__main__":
     M82MasterOrchestrator().run_pipeline()
