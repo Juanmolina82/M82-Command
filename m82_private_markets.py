@@ -11,56 +11,33 @@ class M82PrivateMarketsEngine:
     def __init__(self):
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    def parse_fund_summary(self):
-        fund_info = {
-            "Fund Name": "KKR North America Fund XIV SCSp",
-            "Management Firm": "Kohlberg Kravis Roberts & Co LP",
-            "Vintage Year": 2024,
-            "Fund Stage": "Generalist",
-            "Fund Size": "23,000.00M USD",
-            "Status": "Had Final Close"
-        }
-        
-        top_funds = [
-            {"Fund": "KKR North America Fund XIV SCSp", "Size (M USD)": 23000.00, "Stage": "Generalist", "Vintage": 2024},
-            {"Fund": "KKR Global Infrastructure Investors V", "Size (M USD)": 19200.00, "Stage": "Buyouts", "Vintage": 2023},
-            {"Fund": "KKR North America Fund XIII SCSp", "Size (M USD)": 19000.00, "Stage": "Buyouts", "Vintage": 2020},
-            {"Fund": "KKR 2006 Fund Private Investors, LLC", "Size (M USD)": 17600.00, "Stage": "Buyouts", "Vintage": 2006},
-            {"Fund": "KKR Global Infrastructure Investors IV SCSp", "Size (M USD)": 17000.00, "Stage": "Buyouts", "Vintage": 2021},
+    def parse_largest_funds(self):
+        largest_funds = [
+            {"Fund Name": "General Atlantic Partners (Bermuda) IV LP", "Size (M USD)": 23701.01},
+            {"Fund Name": "KKR North America Fund XIV SCSp", "Size (M USD)": 23000.00},
+            {"Fund Name": "Francisco Partners VIII, L.P.", "Size (M USD)": 23000.00},
+            {"Fund Name": "Sequoia Capital Fund LP", "Size (M USD)": 22722.25},
+            {"Fund Name": "KKR Global Infrastructure Investors V", "Size (M USD)": 19200.00},
+            {"Fund Name": "Coller International Partners IX", "Size (M USD)": 17000.00},
+            {"Fund Name": "BPEA Private Equity Fund IX", "Size (M USD)": 15600.00},
+            {"Fund Name": "Veritas Capital Fund IX LP", "Size (M USD)": 15300.00},
+            {"Fund Name": "Clearlake Capital Partners VIII, LP", "Size (M USD)": 14800.00},
+            {"Fund Name": "Blackstone Capital Partners Asia III LP", "Size (M USD)": 13100.00},
         ]
-        return fund_info, pd.DataFrame(top_funds)
-
-    def parse_market_overview(self):
-        stage_breakdown = [
-            {"Stage": "Generalist", "Amount (M USD)": 212795.39, "Share": "34.1%"},
-            {"Stage": "Buyouts", "Amount (M USD)": 182279.47, "Share": "29.2%"},
-            {"Stage": "Balanced Stage", "Amount (M USD)": 65388.72, "Share": "10.5%"},
-            {"Stage": "Secondary Funds", "Amount (M USD)": 32895.87, "Share": "5.3%"},
-            {"Stage": "Early Stage", "Amount (M USD)": 25800.49, "Share": "4.1%"},
-            {"Stage": "Otros (Opportunistic, Value Add, Core, Mezzanine)", "Amount (M USD)": 82093.41, "Share": "16.8%"},
-        ]
-        return pd.DataFrame(stage_breakdown)
+        return pd.DataFrame(largest_funds), 187423.25
 
     def dispatch(self):
-        fund_info, df_funds = self.parse_fund_summary()
-        df_stages = self.parse_market_overview()
+        df_funds, total_raised = self.parse_largest_funds()
 
-        dosier = "💼 *[M82 PRIVATE MARKETS INTELLIGENCE — MOLINA HOLDINGS LLC]* 💼\n"
-        dosier += f"🕒 *Sincronización Refinitiv:* `{self.timestamp}`\n"
+        dosier = "💼 *[M82 PRIVATE EQUITY — LARGEST FUNDS RAISED]* 💼\n"
+        dosier += f"🏛️ *Molina Holdings LLC Intelligence* | `{self.timestamp}`\n"
         dosier += "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n"
 
-        dosier += f"🏛️ *FONDO DESTACADO: {fund_info['Fund Name']}*\n"
-        dosier += f"• *Firma Gestora:* {fund_info['Management Firm']}\n"
-        dosier += f"• *Tamaño:* `{fund_info['Fund Size']}` | *Vintage:* `{fund_info['Vintage Year']}`\n"
-        dosier += f"• *Estatus:* {fund_info['Status']} ({fund_info['Fund Stage']})\n\n"
+        dosier += "🌐 *TOP 10 FONDOS MÁS GRANDES LEVANTADOS (REFINITIV)*\n"
+        for idx, row in df_funds.iterrows():
+            dosier += f"{idx+1}. *{row['Fund Name']}*: `${row['Size (M USD)']:,.2f}M USD`\n"
 
-        dosier += "📊 *TOP FONDOS GESTIONADOS POR LA FIRMA*\n"
-        for _, row in df_funds.iterrows():
-            dosier += f"• *{row['Fund']}* ({row['Vintage']}): `${row['Size (M USD)']:,.2f}M USD` — `{row['Stage']}`\n"
-
-        dosier += "\n🌐 *DESGLOSE DE MERCADO POR FUND STAGE (REFINITIV PE)*\n"
-        for _, row in df_stages.iterrows():
-            dosier += f"• *{row['Stage']}*: `${row['Amount (M USD)']:,.2f}M USD` ({row['Share']})\n"
+        dosier += f"\n📊 *Total Acumulado Top 10:* `${total_raised:,.2f}M USD`\n"
 
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
         payload = {"chat_id": CHAT_ID, "text": dosier, "parse_mode": "Markdown"}
@@ -68,7 +45,7 @@ class M82PrivateMarketsEngine:
         try:
             res = requests.post(url, json=payload, timeout=10)
             if res.status_code == 200:
-                print("✅ M82 Private Markets Intelligence despachado con éxito.")
+                print("✅ M82 Private Equity (Largest Funds) despachado a Telegram.")
             else:
                 print(f"❌ Error al enviar a Telegram: {res.text}")
         except Exception as e:
