@@ -11,47 +11,47 @@ class M82PrivateMarketsEngine:
     def __init__(self):
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    def parse_market_overview(self):
-        total_raised_usd = 657820.29
-        total_funds_count = 1682
+    def parse_coller_details(self):
+        coller_fund = {
+            "Fund Name": "Coller International Partners IX",
+            "VEID": "624496",
+            "Firm": "Coller Capital Ltd",
+            "Address": "116 Park Street, Park House, London W1GK 6AF, UK",
+            "Size": "17,000.00M USD",
+            "Vintage": 2026,
+            "Stage": "Secondary Funds / Fund Of Funds",
+            "Status": "Had Final Close",
+            "CIO": "Jeremy Coller"
+        }
         
-        stages = [
-            {"Stage": "Generalist", "Raised_M": 212795.39, "Funds": 355},
-            {"Stage": "Buyouts", "Raised_M": 182279.47, "Funds": 209},
-            {"Stage": "Balanced Stage", "Raised_M": 65388.72, "Funds": 592},
-            {"Stage": "Secondary Funds", "Raised_M": 32895.87, "Funds": 12},
-            {"Stage": "Early Stage", "Raised_M": 25800.49, "Funds": 202},
+        history = [
+            {"Fund": "Coller International Partners IX", "Size (M USD)": 17000.00, "Vintage": 2026},
+            {"Fund": "Coller International Partners VIII", "Size (M USD)": 9000.00, "Vintage": 2020},
+            {"Fund": "Coller International Partners VII", "Size (M USD)": 7150.00, "Vintage": 2015},
+            {"Fund": "Coller International Partners VI, L.P.", "Size (M USD)": 5500.00, "Vintage": 2012},
+            {"Fund": "Coller International Partners V", "Size (M USD)": 4800.00, "Vintage": 2006},
+            {"Fund": "Coller International Partners IV, L.P.", "Size (M USD)": 2600.00, "Vintage": 2002},
         ]
-        
-        locations = [
-            {"Country": "United States", "Raised_M": 480172.79, "Funds": 1245},
-            {"Country": "United Kingdom", "Raised_M": 50043.57, "Funds": 70},
-            {"Country": "Luxembourg", "Raised_M": 30388.58, "Funds": 34},
-            {"Country": "Hong Kong", "Raised_M": 14788.26, "Funds": 4},
-            {"Country": "Netherlands", "Raised_M": 13903.42, "Funds": 15},
-        ]
-        return total_raised_usd, total_funds_count, pd.DataFrame(stages), pd.DataFrame(locations)
+        return coller_fund, pd.DataFrame(history)
 
     def dispatch(self):
-        total_amt, total_cnt, df_stages, df_locs = self.parse_market_overview()
+        coller_fund, df_history = self.parse_coller_details()
 
-        dosier = "📊 *[M82 PRIVATE MARKETS — GLOBAL OVERVIEW]* 📊\n"
+        dosier = "💼 *[M82 PRIVATE MARKETS — REFINITIV FUND SUMMARY]* 💼\n"
         dosier += f"🏛️ *Molina Holdings LLC Intelligence* | `{self.timestamp}`\n"
         dosier += "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n"
 
-        dosier += f"🌐 *TOTAL CAPITAL GLOBAL RECAUDADO*\n"
-        dosier += f"• *Monto Total:* `${total_amt:,.2f}M USD`\n"
-        dosier += f"• *Fondos Activos:* `{total_cnt:,}` fondos\n\n"
+        dosier += f"🏛️ *FONDO: {coller_fund['Fund Name']} (VEID: {coller_fund['VEID']})*\n"
+        dosier += f"• *Gestora:* {coller_fund['Firm']}\n"
+        dosier += f"• *Ubicación:* {coller_fund['Address']}\n"
+        dosier += f"• *Tamaño Final:* `{coller_fund['Size']}`\n"
+        dosier += f"• *Estatus:* {coller_fund['Status']} | *Vintage:* `{coller_fund['Vintage']}`\n"
+        dosier += f"• *Estrategia:* {coller_fund['Stage']}\n"
+        dosier += f"• *CIO / Liderazgo:* {coller_fund['CIO']}\n\n"
 
-        dosier += "📈 *TOP ESTRATEGIAS (FUND STAGE)*\n"
-        for _, r in df_stages.iterrows():
-            pct = (r['Raised_M'] / total_amt) * 100
-            dosier += f"• *{r['Stage']}*: `${r['Raised_M']:,.2f}M USD` ({pct:.1f}%) | `{r['Funds']}` fondos\n"
-
-        dosier += "\n🌍 *TOP GEOGRAFÍAS (FUND LOCATION)*\n"
-        for _, r in df_locs.iterrows():
-            pct = (r['Raised_M'] / total_amt) * 100
-            dosier += f"• *{r['Country']}*: `${r['Raised_M']:,.2f}M USD` ({pct:.1f}%) | `{r['Funds']}` fondos\n"
+        dosier += "📊 *HISTÓRICO DE FONDOS COLLER CAPITAL*\n"
+        for _, row in df_history.iterrows():
+            dosier += f"• *{row['Fund']}* ({row['Vintage']}): `${row['Size (M USD)']:,.2f}M USD`\n"
 
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
         payload = {"chat_id": CHAT_ID, "text": dosier, "parse_mode": "Markdown"}
@@ -59,11 +59,11 @@ class M82PrivateMarketsEngine:
         try:
             res = requests.post(url, json=payload, timeout=10)
             if res.status_code == 200:
-                print("✅ Reporte de Private Markets Overview enviado a Telegram.")
+                print("✅ Ficha de Coller International Partners IX enviada a Telegram.")
             else:
-                print(f"❌ Error enviando a Telegram: {res.text}")
+                print(f"❌ Error al enviar a Telegram: {res.text}")
         except Exception as e:
-            print(f"⚠️ Error de conexión: {e}")
+            print(f"⚠️ Fallo de conexión: {e}")
 
 if __name__ == "__main__":
     M82PrivateMarketsEngine().dispatch()
