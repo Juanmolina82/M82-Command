@@ -11,60 +11,47 @@ class M82PrivateMarketsEngine:
     def __init__(self):
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    def parse_largest_funds(self):
-        largest_funds = [
-            {"Fund Name": "General Atlantic Partners (Bermuda) IV LP", "Size (M USD)": 23701.01},
-            {"Fund Name": "KKR North America Fund XIV SCSp", "Size (M USD)": 23000.00},
-            {"Fund Name": "Francisco Partners VIII, L.P.", "Size (M USD)": 23000.00},
-            {"Fund Name": "Sequoia Capital Fund LP", "Size (M USD)": 22722.25},
-            {"Fund Name": "KKR Global Infrastructure Investors V", "Size (M USD)": 19200.00},
-            {"Fund Name": "Coller International Partners IX", "Size (M USD)": 17000.00},
-            {"Fund Name": "BPEA Private Equity Fund IX", "Size (M USD)": 15600.00},
-            {"Fund Name": "Veritas Capital Fund IX LP", "Size (M USD)": 15300.00},
-            {"Fund Name": "Clearlake Capital Partners VIII, LP", "Size (M USD)": 14800.00},
-            {"Fund Name": "Blackstone Capital Partners Asia III LP", "Size (M USD)": 13100.00},
+    def parse_market_overview(self):
+        total_raised_usd = 657820.29
+        total_funds_count = 1682
+        
+        stages = [
+            {"Stage": "Generalist", "Raised_M": 212795.39, "Funds": 355},
+            {"Stage": "Buyouts", "Raised_M": 182279.47, "Funds": 209},
+            {"Stage": "Balanced Stage", "Raised_M": 65388.72, "Funds": 592},
+            {"Stage": "Secondary Funds", "Raised_M": 32895.87, "Funds": 12},
+            {"Stage": "Early Stage", "Raised_M": 25800.49, "Funds": 202},
         ]
-        return pd.DataFrame(largest_funds), 187423.25
-
-    def parse_featured_funds(self):
-        # Datos extraídos de los reportes oficiales Refinitiv (VEID: 627364 y 624496)
-        fp_fund = {
-            "Fund Name": "Francisco Partners VIII, L.P.",
-            "VEID": "627364",
-            "Firm": "Francisco Partners LP",
-            "Size": "23,000.00M USD",
-            "Vintage": 2026,
-            "Stage": "All Buyouts"
-        }
-        coller_fund = {
-            "Fund Name": "Coller International Partners IX",
-            "VEID": "624496",
-            "Firm": "Coller Capital Ltd",
-            "Size": "17,000.00M USD",
-            "Vintage": 2026,
-            "Stage": "Secondary Funds"
-        }
-        return fp_fund, coller_fund
+        
+        locations = [
+            {"Country": "United States", "Raised_M": 480172.79, "Funds": 1245},
+            {"Country": "United Kingdom", "Raised_M": 50043.57, "Funds": 70},
+            {"Country": "Luxembourg", "Raised_M": 30388.58, "Funds": 34},
+            {"Country": "Hong Kong", "Raised_M": 14788.26, "Funds": 4},
+            {"Country": "Netherlands", "Raised_M": 13903.42, "Funds": 15},
+        ]
+        return total_raised_usd, total_funds_count, pd.DataFrame(stages), pd.DataFrame(locations)
 
     def dispatch(self):
-        df_funds, total_raised = self.parse_largest_funds()
-        fp_fund, coller_fund = self.parse_featured_funds()
+        total_amt, total_cnt, df_stages, df_locs = self.parse_market_overview()
 
-        dosier = "💼 *[M82 PRIVATE MARKETS — REFINITIV INTELLIGENCE]* 💼\n"
+        dosier = "📊 *[M82 PRIVATE MARKETS — GLOBAL OVERVIEW]* 📊\n"
         dosier += f"🏛️ *Molina Holdings LLC Intelligence* | `{self.timestamp}`\n"
         dosier += "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n"
 
-        dosier += "🏛️ *FONDOS DESTACADOS REVISADOS*\n"
-        dosier += f"• *{fp_fund['Fund Name']}* (VEID: {fp_fund['VEID']})\n"
-        dosier += f"  Gestor: {fp_fund['Firm']} | Tamaño: `{fp_fund['Size']}` | Estrategia: {fp_fund['Stage']}\n\n"
-        dosier += f"• *{coller_fund['Fund Name']}* (VEID: {coller_fund['VEID']})\n"
-        dosier += f"  Gestor: {coller_fund['Firm']} | Tamaño: `{coller_fund['Size']}` | Estrategia: {coller_fund['Stage']}\n\n"
+        dosier += f"🌐 *TOTAL CAPITAL GLOBAL RECAUDADO*\n"
+        dosier += f"• *Monto Total:* `${total_amt:,.2f}M USD`\n"
+        dosier += f"• *Fondos Activos:* `{total_cnt:,}` fondos\n\n"
 
-        dosier += "🌐 *TOP 10 FONDOS MÁS GRANDES LEVANTADOS*\n"
-        for idx, row in df_funds.iterrows():
-            dosier += f"{idx+1}. *{row['Fund Name']}*: `${row['Size (M USD)']:,.2f}M USD`\n"
+        dosier += "📈 *TOP ESTRATEGIAS (FUND STAGE)*\n"
+        for _, r in df_stages.iterrows():
+            pct = (r['Raised_M'] / total_amt) * 100
+            dosier += f"• *{r['Stage']}*: `${r['Raised_M']:,.2f}M USD` ({pct:.1f}%) | `{r['Funds']}` fondos\n"
 
-        dosier += f"\n📊 *Total Acumulado Top 10:* `${total_raised:,.2f}M USD`\n"
+        dosier += "\n🌍 *TOP GEOGRAFÍAS (FUND LOCATION)*\n"
+        for _, r in df_locs.iterrows():
+            pct = (r['Raised_M'] / total_amt) * 100
+            dosier += f"• *{r['Country']}*: `${r['Raised_M']:,.2f}M USD` ({pct:.1f}%) | `{r['Funds']}` fondos\n"
 
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
         payload = {"chat_id": CHAT_ID, "text": dosier, "parse_mode": "Markdown"}
@@ -72,11 +59,11 @@ class M82PrivateMarketsEngine:
         try:
             res = requests.post(url, json=payload, timeout=10)
             if res.status_code == 200:
-                print("✅ M82 Private Markets actualizado y despachado a Telegram.")
+                print("✅ Reporte de Private Markets Overview enviado a Telegram.")
             else:
-                print(f"❌ Error al enviar a Telegram: {res.text}")
+                print(f"❌ Error enviando a Telegram: {res.text}")
         except Exception as e:
-            print(f"⚠️ Fallo de conexión: {e}")
+            print(f"⚠️ Error de conexión: {e}")
 
 if __name__ == "__main__":
     M82PrivateMarketsEngine().dispatch()
