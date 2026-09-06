@@ -11,47 +11,37 @@ class M82PrivateMarketsEngine:
     def __init__(self):
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    def parse_coller_details(self):
+    def parse_coller_eqt_deal(self):
         coller_fund = {
             "Fund Name": "Coller International Partners IX",
             "VEID": "624496",
-            "Firm": "Coller Capital Ltd",
-            "Address": "116 Park Street, Park House, London W1GK 6AF, UK",
-            "Size": "17,000.00M USD",
+            "Firm": "Coller Capital Ltd (Subsidiary of EQT AB)",
+            "Fund Size": "17,000.00M USD",
+            "Corporate Deal": "Acquired by EQT AB for $3.2B USD",
+            "Deal Status": "Closed / Combination Completed",
             "Vintage": 2026,
             "Stage": "Secondary Funds / Fund Of Funds",
-            "Status": "Had Final Close",
             "CIO": "Jeremy Coller"
         }
-        
-        history = [
-            {"Fund": "Coller International Partners IX", "Size (M USD)": 17000.00, "Vintage": 2026},
-            {"Fund": "Coller International Partners VIII", "Size (M USD)": 9000.00, "Vintage": 2020},
-            {"Fund": "Coller International Partners VII", "Size (M USD)": 7150.00, "Vintage": 2015},
-            {"Fund": "Coller International Partners VI, L.P.", "Size (M USD)": 5500.00, "Vintage": 2012},
-            {"Fund": "Coller International Partners V", "Size (M USD)": 4800.00, "Vintage": 2006},
-            {"Fund": "Coller International Partners IV, L.P.", "Size (M USD)": 2600.00, "Vintage": 2002},
-        ]
-        return coller_fund, pd.DataFrame(history)
+        return coller_fund
 
     def dispatch(self):
-        coller_fund, df_history = self.parse_coller_details()
+        coller = self.parse_coller_eqt_deal()
 
-        dosier = "💼 *[M82 PRIVATE MARKETS — REFINITIV FUND SUMMARY]* 💼\n"
+        dosier = "💼 *[M82 PRIVATE MARKETS — REFINITIV CORPORATE DEAL]* 💼\n"
         dosier += f"🏛️ *Molina Holdings LLC Intelligence* | `{self.timestamp}`\n"
         dosier += "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n"
 
-        dosier += f"🏛️ *FONDO: {coller_fund['Fund Name']} (VEID: {coller_fund['VEID']})*\n"
-        dosier += f"• *Gestora:* {coller_fund['Firm']}\n"
-        dosier += f"• *Ubicación:* {coller_fund['Address']}\n"
-        dosier += f"• *Tamaño Final:* `{coller_fund['Size']}`\n"
-        dosier += f"• *Estatus:* {coller_fund['Status']} | *Vintage:* `{coller_fund['Vintage']}`\n"
-        dosier += f"• *Estrategia:* {coller_fund['Stage']}\n"
-        dosier += f"• *CIO / Liderazgo:* {coller_fund['CIO']}\n\n"
+        dosier += f"🚨 *NOTICIA M&A: COMBINACIÓN EQT + COLLER CAPITAL*\n"
+        dosier += f"• *Gestora Target:* Coller Capital Ltd\n"
+        dosier += f"• *Comprador / Socio:* EQT AB (EQTAB.ST)\n"
+        dosier += f"• *Valor de Transacción:* `$3,200.00M USD` ($3.2B)\n"
+        dosier += f"• *Estatus M&A:* `{coller['Deal Status']}`\n\n"
 
-        dosier += "📊 *HISTÓRICO DE FONDOS COLLER CAPITAL*\n"
-        for _, row in df_history.iterrows():
-            dosier += f"• *{row['Fund']}* ({row['Vintage']}): `${row['Size (M USD)']:,.2f}M USD`\n"
+        dosier += f"🏛️ *IMPACTO EN EL FONDO: {coller['Fund Name']} (VEID: {coller['VEID']})*\n"
+        dosier += f"• *Tamaño del Fondo IX:* `{coller['Fund Size']}`\n"
+        dosier += f"• *Estrategia:* {coller['Stage']}\n"
+        dosier += f"• *Liderazgo Manteniéndose:* {coller['CIO']}\n"
 
         url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
         payload = {"chat_id": CHAT_ID, "text": dosier, "parse_mode": "Markdown"}
@@ -59,11 +49,11 @@ class M82PrivateMarketsEngine:
         try:
             res = requests.post(url, json=payload, timeout=10)
             if res.status_code == 200:
-                print("✅ Ficha de Coller International Partners IX enviada a Telegram.")
+                print("✅ Evento EQT-Coller enviado exitosamente a Telegram.")
             else:
                 print(f"❌ Error al enviar a Telegram: {res.text}")
         except Exception as e:
-            print(f"⚠️ Fallo de conexión: {e}")
+            print(f"⚠️ Error de conexión: {e}")
 
 if __name__ == "__main__":
     M82PrivateMarketsEngine().dispatch()
