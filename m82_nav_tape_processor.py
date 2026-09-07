@@ -1,98 +1,94 @@
 #!/usr/bin/env python3
 import os
 import pandas as pd
-import requests
+import numpy as np
+import matplotlib.pyplot as plt
 from datetime import datetime
-from dotenv import load_dotenv
 
-load_dotenv()
-
-TOKEN = os.getenv("TELEGRAM_TOKEN")
-CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
-
-class M82InstitutionalNAVEngine:
+class M82InstitutionalNAVProcessor:
     def __init__(self):
         self.timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    def execute_audit(self):
-        # Datos de portafolio ajustados a la realidad institucional
-        portfolio = [
+    def run_pipeline(self):
+        # 1. Base Portfolio Exposure
+        portfolio_data = [
             {
                 "Vehicle": "Coller International Partners VIII (LP Interest)",
-                "GP_Total_AUM": "USD 9.15B (Fund Size)",
                 "Strategy": "Global Private Equity Secondary",
-                "M82_Commitment_NAV": 450000000,
-                "GP_NAV_Discount": 0.12,  # 12% Descuento Secondary de entrada
-                "DPI": 0.65,
-                "TVPI": 1.78,
-                "Lifecycle": "Harvest Phase (Vintage 2021)"
+                "Reported_NAV": 450.0,
+                "IFRS13_Discount": 0.12,
+                "Base_NAV": 396.0
             },
             {
-                "Vehicle": "Coller Secondary Energy & Transition Portfolio",
-                "GP_Total_AUM": "Co-Investment / Direct Secondary",
-                "Strategy": "Energy Transition Infrastructure",
-                "M82_Commitment_NAV": 280000000,
-                "GP_NAV_Discount": 0.18,  # 18% Descuento Secondary
-                "DPI": 0.12,
-                "TVPI": 1.25,
-                "Lifecycle": "Deployment / J-Curve Phase"
+                "Vehicle": "Coller Secondary Energy & Transition",
+                "Strategy": "Energy Transition Infra Secondary",
+                "Reported_NAV": 280.0,
+                "IFRS13_Discount": 0.18,
+                "Base_NAV": 229.6
             },
             {
-                "Vehicle": "M82 Energy Asset Corp (Direct Operating)",
-                "GP_Total_AUM": "USD 150M (Direct Asset)",
+                "Vehicle": "M82 Energy Asset Corp (Direct Upstream)",
                 "Strategy": "Upstream O&G Real Assets",
-                "M82_Commitment_NAV": 150000000,
-                "GP_NAV_Discount": 0.00,  # Activo directo (DCF IFRS 13 Level 3)
-                "DPI": 0.85,
-                "TVPI": 2.10,
-                "Lifecycle": "Mature Cash Generator"
+                "Reported_NAV": 150.0,
+                "IFRS13_Discount": 0.00,
+                "Base_NAV": 150.0
             }
         ]
-
-        df = pd.DataFrame(portfolio)
         
-        # Cálculo de NAV Ajustado por Descuento IFRS 13 Level 3
-        df["Adjusted_IFRS13_NAV"] = df["M82_Commitment_NAV"] * (1 - df["GP_NAV_Discount"])
+        df = pd.DataFrame(portfolio_data)
         
-        total_reported_nav = df["M82_Commitment_NAV"].sum()
-        total_adjusted_nav = df["Adjusted_IFRS13_NAV"].sum()
-
-        dosier = "📊 *[M82 INSTITUTIONAL NAV AUDIT - IFRS 13 LEVEL 3]* 📊\n"
-        dosier += f"🏛️ *Molina Holdings LLC* | `{self.timestamp}`\n"
-        dosier += "⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯\n\n"
+        # 2. Escenarios IFRS 13 Level 3 DCF para M82 Energy Asset Corp
+        upstream_base = 150.0
+        upstream_stress = 126.6  # Brent $65 / WACC 15% (-15.6%)
+        upstream_upside = 173.1  # Brent $85 / WACC 10% (+15.4%)
         
-        dosier += f"💼 *LP Reported NAV Exposure:* `${total_reported_nav:,.2f} USD`\n"
-        dosier += f"🛡️ *IFRS 13 Adjusted NAV (Secondary Disc.):* `${total_adjusted_nav:,.2f} USD`\n\n"
-        dosier += "📋 *DESGLOSE DE PORTAFOLIO Y CICLO DE VIDA:*\n\n"
-
-        for _, row in df.iterrows():
-            dosier += f"• *{row['Vehicle']}*\n"
-            dosier += f"  - Contexto GP: `{row['GP_Total_AUM']}`\n"
-            dosier += f"  - Estrategia: `{row['Strategy']}`\n"
-            dosier += f"  - NAV Reportado LP: `${row['M82_Commitment_NAV']:,.2f}`\n"
-            dosier += f"  - Descuento Entrada/Level 3: `{row['GP_NAV_Discount']*100:.1f}%` $\rightarrow$ Adj NAV: `${row['Adjusted_IFRS13_NAV']:,.2f}`\n"
-            dosier += f"  - Métricas: DPI `{row['DPI']}x` | TVPI `{row['TVPI']}x`\n"
-            dosier += f"  - Estado: `{row['Lifecycle']}`\n\n"
-
-        dosier += "✅ *Estatus Audit:* Claridad de AUM GP vs LP establecida. Descuentos Level 3 aplicados."
-
-        print(dosier)
-        self._dispatch(dosier)
-
-    def _dispatch(self, message):
-        if not TOKEN or not CHAT_ID:
-            print("⚠️ Error: Credenciales no detectadas en .env")
-            return
-
-        url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-        payload = {"chat_id": CHAT_ID, "text": message, "parse_mode": "Markdown"}
+        fixed_secondaries_nav = df[df["Vehicle"] != "M82 Energy Asset Corp (Direct Upstream)"]["Base_NAV"].sum() # 625.6M
         
-        try:
-            res = requests.post(url, json=payload, timeout=10)
-            if res.status_code == 200:
-                print("\n✅ Reporte institucional limpio y transmitido exitosamente.")
-        except Exception as e:
-            print(f"❌ Error de conexión: {e}")
+        total_nav_base = fixed_secondaries_nav + upstream_base     # $775.6M
+        total_nav_stress = fixed_secondaries_nav + upstream_stress # $752.2M
+        total_nav_upside = fixed_secondaries_nav + upstream_upside # $798.7M
+        
+        print("\n📊 --- SUMMARY DOSIER: MOLINA HOLDINGS LLC ---")
+        print(f"• Total NAV Reportado LP: ${df['Reported_NAV'].sum():.1f}M USD")
+        print(f"• Total NAV Ajustado Level 3 (Caso Base): ${total_nav_base:.1f}M USD")
+        print(f"• Total NAV Ajustado Level 3 (Stress Down): ${total_nav_stress:.1f}M USD")
+        print(f"• Total NAV Ajustado Level 3 (Upside): ${total_nav_upside:.1f}M USD\n")
+        
+        # 3. Generación del gráfico de sensibilidad
+        self._generate_chart(upstream_stress, upstream_base, upstream_upside, 
+                             total_nav_stress, total_nav_base, total_nav_upside)
+
+    def _generate_chart(self, u_stress, u_base, u_upside, t_stress, t_base, t_upside):
+        scenarios = ['Stress Down\n($65 / 15%)', 'Caso Base\n($75 / 12%)', 'Upside\n($85 / 10%)']
+        m82_upstream = [u_stress, u_base, u_upside]
+        total_nav = [t_stress, t_base, t_upside]
+
+        x = np.arange(len(scenarios))
+        width = 0.35
+
+        fig, ax = plt.subplots(figsize=(8, 4.5), dpi=300)
+        rects1 = ax.bar(x - width/2, m82_upstream, width, label='M82 Energy Asset Corp ($M)', color='#2b6cb0')
+        rects2 = ax.bar(x + width/2, total_nav, width, label='NAV Total Ajustado M82 ($M)', color='#0d2238')
+
+        ax.set_ylabel('Valoración ($M USD)', fontsize=10, fontweight='bold')
+        ax.set_title('Sensibilidad IFRS 13 Level 3 — M82 Energy Asset Corp & NAV Total', fontsize=12, fontweight='bold', pad=15)
+        ax.set_xticks(x)
+        ax.set_xticklabels(scenarios, fontsize=9, fontweight='bold')
+        ax.legend(frameon=True, facecolor='#ffffff', edgecolor='#cbd5e0')
+        ax.set_ylim(0, 900)
+
+        for rect in rects1 + rects2:
+            height = rect.get_height()
+            ax.annotate(f'${height:.1f}M',
+                        xy=(rect.get_x() + rect.get_width() / 2, height),
+                        xytext=(0, 3),
+                        textcoords="offset points",
+                        ha='center', va='bottom', fontsize=8, fontweight='bold')
+
+        plt.tight_layout()
+        output_file = 'm82_sensitivity_chart.png'
+        plt.savefig(output_file, dpi=300)
+        print(f"📈 Gráfico institucional generado exitosamente: '{output_file}'")
 
 if __name__ == "__main__":
-    M82InstitutionalNAVEngine().execute_audit()
+    M82InstitutionalNAVProcessor().run_pipeline()
